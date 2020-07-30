@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        nav{
+            position: fixed;
+            padding: 8px 20px 0px 20px;
+            border-bottom: 1px solid rgba(46, 46, 46, 0.28);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+        }
+        .add-appoint{
+            display: flex;
+            justify-content: space-between;
+        }
+        .homecont{
+            padding: 3rem 20rem 0 25rem;;
+        }
+        .align-items-center {
+            -webkit-box-align: center !important;
+            align-items: center !important;
+        }
+
+        .row {
+            display: -webkit-box;
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+        }
+        .cards{
+            background-color: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 16px !important;
+            margin-left: 14px;
+            margin-top: 14px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h4>Hello World! 😊</h4>
+        <div style="display: flex;justify-content: space-around;">
+            <h4 style="margin: 0px 10px 0px 10px;"> {{user.first_name}} </h4> 
+            <a href="/logout" title="logout"><img src="/static/avatar.svg" height="24px" width="24px" alt=""></a>
+        </div>
+    </nav>
+    <div class="homecont">
+        <div class="alert alert-primanry" role="alert">
+            {% if not doctor %}
+            <div class="add-appoint">
+                <p style="position: relative;top: 8px;">Do you want to add appointments?</p>
+                <a href="/add-appointment" class="btn btn-outline-primary">Add Appointment</a>
+            </div>
+            <hr>
+            {% endif %}
+            <p class="mb-0">All your appointments will appear here!</p>
+        </div>
+        <div class="row align-items-center">
+            {% if doctor %}
+            {% for i in appoint %}
+            <div class="cards" style="display: flex;flex-direction: column;">
+                <div style="display: flex;justify-content: flex-start;">
+                    <img src="/static/avatar.svg" height="24px" width="24px" alt="">
+                    <h4 style="margin: 0px 10px 0px 10px;">Doctor: {{i.doctor.user.first_name}} {{i.doctor.user.last_name}}</h4> 
+                </div>
+                <div style="display: flex;justify-content: flex-start; margin-top: 5px;margin-left: 2px;">
+                    <h6 style="color: rgba(39, 39, 39, 0.801);">Patient: {{i.user.first_name}} {{i.user.last_name}}</h6> 
+                </div>
+                <div style="display: flex;justify-content: flex-start; margin-top: 5px;margin-left: 2px;">
+                    <h6 style="color: rgba(39, 39, 39, 0.801);margin-right: 50px;">Date: {{i.date}}</h6> 
+                    <h6 style="color: rgba(39, 39, 39, 0.801);">Time Slot: {{i.time}}</h6>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% for i in appoint %}
+            <div class="cards" style="display: flex;flex-direction: column;">
+                <div style="display: flex;justify-content: flex-start;">
+                    <img src="/static/avatar.svg" height="24px" width="24px" alt="">
+                    <h4 style="margin: 0px 10px 0px 10px;">Doctor: {{i.doctor.user.first_name}} {{i.doctor.user.last_name}}</h4> 
+                </div>
+                <div style="display: flex;justify-content: flex-start; margin-top: 5px;margin-left: 2px;">
+                    <h6 style="color: rgba(39, 39, 39, 0.801);">Patient: {{user.first_name}} {{user.last_name}}</h6> 
+                </div>
+                <div style="display: flex;justify-content: flex-start; margin-top: 5px;margin-left: 2px;">
+                    <h6 style="color: rgba(39, 39, 39, 0.801);margin-right: 50px;">Date: {{i.date}}</h6> 
+                    <h6 style="color: rgba(39, 39, 39, 0.801);">Time Slot: {{i.time}}</h6>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

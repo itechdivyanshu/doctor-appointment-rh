@@ -3,5 +3,5 @@ from .models import *
 
 # Register your models here.
 admin.site.register(doctor)
-admin.site.register(profile)
+#admin.site.register(profile)
 admin.site.register(availability)
