@@ -1,6 +1,6 @@
 # doctor-appointment-rh
 
-### Setup
+### `Setup`
 ```
 git clone https://github.com/ItechIndrustries/doctor-appointment-rh.git
 cd doctor-appointment-rh
